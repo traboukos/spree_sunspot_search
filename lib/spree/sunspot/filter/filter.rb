@@ -11,6 +11,7 @@ module Spree
         attr_accessor :search_condition
         attr_accessor :search_param
         attr_accessor :values
+        attr_accessor :should_localize
 
         def initialize
           @values = []
