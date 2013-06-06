@@ -97,8 +97,9 @@ module Spree
           Setup.query_filters.filters.each do |filter|
             if filter.values.any? && filter.values.first.is_a?(Range)
               query.facet(filter.search_param) do
-                filter.values.each do |value|
-                  row(value) do 
+                filter.values.each_with_index do |value, i|
+                  desc = (i == filter.values.length-1) ? "#{value[0]}+" : value
+                  row(desc) do 
                     with(filter.search_param, value)
                   end
                 end
